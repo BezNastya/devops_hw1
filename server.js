@@ -1,7 +1,7 @@
 const express = require('express');
 let http = require('http');
 let fs = require('fs');
-const ReceiverInf = require('./model');
+// const ReceiverInf = require('./model');
 let nodemailer = require("nodemailer");
 
 const server = express();
@@ -22,57 +22,57 @@ server.get('/', function(req, res){
 });
 
 server.get('/receivers', function(req, res){
-    ReceiverInf.findAll(function (err, dbR){
-        if (err) {
-            console.log(err);
-            res.send("Error occurred during getting all receivers");
-        } else {
-            console.log(dbR);
-            res.render(__dirname + "/views/receivers.twig", {receivers: dbR});
-        }
-    });
+    // ReceiverInf.findAll(function (err, dbR){
+    //     if (err) {
+    //         console.log(err);
+    //         res.send("Error occurred during getting all receivers");
+    //     } else {
+    //         console.log(dbR);
+            res.render(__dirname + "/views/receivers.twig", {receivers: []});
+    //     }
+    // });
 });
 
-server.get("/receivers/delete/:id", function (req, res){
-    ReceiverInf.delete(req.params.id, function (err, id){
-        if (err) {
-            console.log(err);
-            res.render(__dirname + "/views/error.twig");
-        } else {
-            res.render(__dirname + "/views/success.twig",);
-        }
-    });
-});
-
-server.post("/receivers/update/:id", function (req, res){
-    ReceiverInf.update(req.params.id, req.body.receiverInf,function (err, id){
-        if (err) {
-            console.log(err);
-            res.render(__dirname + "/views/error.twig");
-        } else {
-            res.render(__dirname + "/views/success.twig",);
-        }
-    });
-});
-
-server.get("/receivers/update/:id", function (req, res){
-    res.render(__dirname + "/views/edit.twig", {id: req.params.id});
-});
+// server.get("/receivers/delete/:id", function (req, res){
+//     ReceiverInf.delete(req.params.id, function (err, id){
+//         if (err) {
+//             console.log(err);
+//             res.render(__dirname + "/views/error.twig");
+//         } else {
+//             res.render(__dirname + "/views/success.twig",);
+//         }
+//     });
+// });
+//
+// server.post("/receivers/update/:id", function (req, res){
+//     ReceiverInf.update(req.params.id, req.body.receiverInf,function (err, id){
+//         if (err) {
+//             console.log(err);
+//             res.render(__dirname + "/views/error.twig");
+//         } else {
+//             res.render(__dirname + "/views/success.twig",);
+//         }
+//     });
+// });
+//
+// server.get("/receivers/update/:id", function (req, res){
+//     res.render(__dirname + "/views/edit.twig", {id: req.params.id});
+// });
 
 server.get("/receivers/create", function (req, res){
     res.render(__dirname + "/views/create.twig");
 });
 
-server.post("/receivers/create", function (req, res){
-    ReceiverInf.create(req.body.receiverInf,function (err, id){
-        if (err) {
-            console.log(err);
-            res.render(__dirname + "/views/error.twig");
-        } else {
-            res.render(__dirname + "/views/success.twig",);
-        }
-    });
-});
+// server.post("/receivers/create", function (req, res){
+//     ReceiverInf.create(req.body.receiverInf,function (err, id){
+//         if (err) {
+//             console.log(err);
+//             res.render(__dirname + "/views/error.twig");
+//         } else {
+//             res.render(__dirname + "/views/success.twig",);
+//         }
+//     });
+// });
 
 server.post('/spam', function (req, res) {
     ReceiverInf.findAll(function (err, receivers){

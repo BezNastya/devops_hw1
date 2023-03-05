@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include './head.twig' %}
+    <title>Receivers</title>
+</head>
+<body>
+{% include './nav.twig' %}
+<table class="table table-striped table-dark">
+    <thead>
+    <tr>
+        <th scope="col"></th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Second Name</th>
+        <th scope="col">Email</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    {% for receiver in receivers %}
+    <tbody>
+        <td>{{ loop.index0 + 1 }}</td>
+        <td>{{ receiver.first_name}}</td>
+        <td>{{ receiver.last_name}}</td>
+        <td>{{ receiver.second_name}}</td>
+        <td>{{ receiver.email}}</td>
+        <td>
+            <a type="button" class="btn btn-danger" href="/receivers/delete/{{ receiver.id }}">Delete</a>
+            <a type="button" class="btn btn-warning" href="/receivers/update/{{ receiver.id }}">Edit</a>
+        </td>
+    </tbody>
+    {% endfor %}
+</table>
+<div class="mx-auto" style="width: 200px;">
+    <a type="button" class="btn btn-primary" href="/receivers/create">Add</a>
+</div>
+</body>
+</html>

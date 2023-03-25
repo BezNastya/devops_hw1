@@ -91,17 +91,17 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     
     - name: Pull image from Docker Hub
-      run: docker image pull anastasiiabezruka/spammer-nodejs-app:latest
+      run: docker image pull anastasiiabezruka/spammer-nodejs-app:main
     
     - name: Run docker image and test it using curl
       shell: bash
       run: |
-        docker run -p 80:8080 --name spammer -d anastasiiabezruka/spammer-nodejs-app
-        HTTP_STATUS=$(curl -i -X GET http://localhost:80/home)
-        if [[ $HTTP_STATUS!="200" ]]; then
+        docker run -p 80:8080 --name spammer -d anastasiiabezruka/spammer-nodejs-app:main
+        sleep 10
+        HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" localhost:80/home)
+        if [[ $HTTP_STATUS != "200" ]]; then
           echo "The spammer app response not 200 but ${HTTP_STATUS}"
           exit 1
-        fi
         else
           echo "The spammer app works fine"
         fi

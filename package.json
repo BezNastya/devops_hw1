@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "lint:js": "eslint src/**/*.js",
+    "lint:js": "eslint *.js",
     "lint": "npm run lint:js"
   },
   "keywords": [],

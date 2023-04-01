@@ -20,6 +20,11 @@ server.get('/', function (req, res) {
   res.redirect('/home')
 })
 
+server.get('/health', function (req, res) {
+  res.status(200)
+  res.send("Spammer app is healthy")
+})
+
 server.get('/receivers', function (req, res) {
   // ReceiverInf.findAll(function (err, dbR){
   //   if (err) {
